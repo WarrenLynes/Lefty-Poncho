@@ -3,15 +3,16 @@ DROP TABLE IF EXISTS user_friend CASCADE;
 DROP TABLE IF EXISTS bet_type CASCADE;
 DROP TABLE IF EXISTS game CASCADE;
 DROP TABLE IF EXISTS game_player CASCADE;
+DROP TABLE IF EXISTS "user_session" CASCADE;
 
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(150) NOT NULL,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL
 );
-
 
 CREATE TABLE user_friend (
     id SERIAL PRIMARY KEY,
@@ -50,6 +51,15 @@ CREATE TABLE game_player (
         FOREIGN KEY(game_id)
         REFERENCES game(id),
     CONSTRAINT fk_player_user_id
+        FOREIGN KEY(user_id)
+        REFERENCES "user"(id)
+);
+
+CREATE TABLE user_session (
+    id SERIAL PRIMARY KEY,
+    user_id INT UNIQUE,
+    hash VARCHAR(100) NOT NULL UNIQUE,
+    CONSTRAINT fk_user_session_id
         FOREIGN KEY(user_id)
         REFERENCES "user"(id)
 );

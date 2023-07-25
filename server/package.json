@@ -15,6 +15,11 @@
       "*.spec.js"
     ]
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "scripts": {
     "watch:dev": "nodemon",
     "build": "npm-run-all clean transpile",
@@ -29,16 +34,25 @@
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "express": "^4.17.1",
     "express-promise-router": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.15",
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "uuid": "^9.0.0"
   },
   "author": "",
   "license": "ISC"
