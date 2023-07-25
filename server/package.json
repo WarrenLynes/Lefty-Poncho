@@ -2,9 +2,28 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.js",
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "./app/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "**/test/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch:dev": "nodemon",
+    "build": "npm-run-all clean transpile",
+    "server": "node ./dist-server/index.js",
+    "dev": "NODE_ENV=development TEST=script npm-run-all build server",
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "transpile": "babel ./app --out-dir ./dist-server",
+    "transpile:docker": "babel ./ --out-dir ./dist-server",
+    "clean": "rimraf ./dist-server"
   },
   "dependencies": {
     "@babel/cli": "^7.22.9",
