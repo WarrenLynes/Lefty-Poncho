@@ -1,13 +1,13 @@
 import jwt from "jsonwebtoken";
 
 export default async function authenticate(req, res, next) {
-  const token = req.headers.authorization.split(' ')[1];
-  const user = jwt.verify(token, process.env.JWT_SECRET);
-  const session = req.session;
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const user = jwt.verify(token, process.env.JWT_SECRET);
 
-  if(!req.session.user_id) {
-    return res.sendStatus(401);
+    req.user = user;
+    next();
+  } catch(err) {
+    res.sendStatus(401);
   }
-  req.user = user;
-  next();
 }

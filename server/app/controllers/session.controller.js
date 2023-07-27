@@ -25,6 +25,16 @@ export async function createSession() {
 }
 
 export async function updateSession(session, user) {
+  const existingSession = await query(
+    `SELECT * FROM user_session WHERE user_id = $1`,
+    [user.id]
+  ).then((x) => x.rows);
+
+  if(existingSession.length) {
+    await Promise.all(existingSession.map(({id}) =>
+      deleteSession(id)
+    ));
+  }
   try {
     session = await query(
       `UPDATE user_session SET user_id = $1 WHERE id = $2 RETURNING *`,

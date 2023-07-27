@@ -48,5 +48,6 @@ export async function login({email, password}) {
     throw new Error('login error');
 
   await validatePassword(user.password, password);
-  return {...user, token: jwt.sign(user, process.env.JWT_SECRET)};
+  delete user.password;
+  return {user, token: jwt.sign(user, process.env.JWT_SECRET)};
 }

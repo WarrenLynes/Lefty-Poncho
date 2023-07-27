@@ -1,6 +1,9 @@
 import {createSession,findSession} from "../controllers/session.controller";
 
 export default async function sessionHandler(req, res, next) {
+  console.log(req.session_id);
+  console.log(req.get("Cookie"));
+
   let session_id = req.session_id;
   let session;
 
