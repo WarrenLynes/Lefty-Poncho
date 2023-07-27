@@ -18,7 +18,8 @@ CREATE TABLE "user" (
     password VARCHAR(150) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
     first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL
+    last_name VARCHAR(50) NOT NULL,
+    img_url VARCHAR
 );
 
 CREATE TABLE user_session (
@@ -52,7 +53,8 @@ CREATE TABLE bet_type (
 CREATE TABLE course (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
-    num_holes INT NOT NULL
+    num_holes INT NOT NULL,
+    img_url VARCHAR
 );
 
 CREATE TABLE hole (
@@ -67,12 +69,14 @@ CREATE TABLE hole (
 );
 
 CREATE TYPE game_status as ENUM('setup', 'inprogress', 'complete');
+CREATE TYPE bet_rate as ENUM('per_stroke', 'per_hole');
 
 CREATE TABLE game (
     id SERIAL PRIMARY KEY,
     course_id INT,
     bet_type_id INT NOT NULL,
     bet_amount INT NOT NULL,
+    bet_rate bet_rate default('per_stroke'),
     current_hole_id INT DEFAULT(1),
     status game_status DEFAULT('inprogress'),
     game_master_id INT NOT NULL,
@@ -146,31 +150,3 @@ CREATE TABLE score (
         FOREIGN KEY(user_id)
         REFERENCES "user"(id)
 );
-
-
-
-
-INSERT INTO
-    bet_type(name, rules)
-    VALUES('Lefty-Poncho', 'TBD');
-
-COPY "user"(email,password,username,first_name,last_name)
-    FROM '/Users/mr.lynes/dev/Lefty-Poncho/server/sql/users.csv'
-    WITH (
-        FORMAT csv,
-        HEADER true
-    );
-
-COPY course(name, num_holes)
-    FROM '/Users/mr.lynes/dev/Lefty-Poncho/server/sql/course.csv'
-    WITH (
-        FORMAT csv,
-        HEADER true
-    );
-
-COPY hole(course_id, hole_num, par, distance)
-    FROM '/Users/mr.lynes/dev/Lefty-Poncho/server/sql/course_holes.csv'
-    WITH (
-        FORMAT csv,
-        HEADER true
-    );

@@ -4,7 +4,7 @@ import {useState} from "react";
 import {handleSignIn, handleUserAuthenticated} from "../state/auth/actions";
 import {useDispatch} from "react-redux";
 import {signIn} from "../utils/api";
-import {Button, FormControl, Input, Stack, View} from "native-base";
+import {Button, Center, FormControl, Input, Stack, View} from "native-base";
 
 export default function LoginScreen({navigation}) {
   const dispatch = useDispatch();
@@ -17,10 +17,14 @@ export default function LoginScreen({navigation}) {
   }
 
   return (
-    <View w='100%' h="100%" bg="#111111">
+    <Center
+      justifyContent={'flex-start'}
+      w='100%' h="100%"
+    >
       <Stack
         safeArea
-        alignSelft={"center"}
+        alignSelf={"center"}
+        justifyContent={'flex-start'}
         space={2.5}
         px="4"
         mt="4"
@@ -33,6 +37,8 @@ export default function LoginScreen({navigation}) {
           <Stack mx="4">
             <FormControl.Label>Email</FormControl.Label>
             <Input
+              size="2xl"
+              required
               value={email}
               placeholder="Email"
               onChangeText={setEmail}
@@ -47,6 +53,7 @@ export default function LoginScreen({navigation}) {
           <Stack mx="4">
             <FormControl.Label>Password</FormControl.Label>
             <Input
+              size="2xl"
               value={password}
               onChangeText={setPassword}
               placeholder="Password"
@@ -63,7 +70,7 @@ export default function LoginScreen({navigation}) {
           Sign In
         </Button>
       </Stack>
-    </View>
+    </Center>
   )
 }
 

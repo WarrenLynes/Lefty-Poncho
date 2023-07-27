@@ -23,6 +23,19 @@ export async function checkForOpenGames(users) {
     throw new Error('open game');
 }
 
+export async function getActiveGame(userId) {
+  return await query(
+    `SELECT DISTINCT g.id, g.course_id, g.bet_type_id, g.bet_amount, g.bet_rate, g.current_hole_id, g.status, g.game_master_id
+      FROM game g
+      JOIN game_player gp ON g.id = gp.game_id
+      JOIN "user" u ON gp.user_id = u.id
+      WHERE u.id = $1
+      AND g.status = 'inprogress'`,
+    [userId]
+  ).then((result) => result.rows);
+
+}
+
 async function getTeams(game_id, hole_id, selectString) {
   return query(
     `SELECT ${selectString} FROM team WHERE game_id=$1 AND hole_id = $2`,
@@ -59,10 +72,11 @@ function createTeams(game_id, hole_id, leftTeam, rightTeam) {
   ]);
 }
 
-export async function createGame(gameInfo) {
+export async function createGame(user, gameInfo) {
 
   try {
-    const {course_id, bet_type_id, bet_amount, game_master_id, players} = gameInfo;
+    const {course_id, bet_type_id, bet_amount, bet_rate, players} = gameInfo;
+    const game_master_id = user.id;
 
     await checkForOpenGames([game_master_id, ...players]);
 
@@ -73,9 +87,9 @@ export async function createGame(gameInfo) {
 
     const newGame = await query(
       `INSERT INTO 
-        game(course_id, bet_type_id, bet_amount, current_hole_id, game_master_id) 
-        values($1, $2, $3, $4, $5) RETURNING *`,
-      [course_id, bet_type_id, bet_amount, firstHoleId, game_master_id]
+        game(course_id, bet_type_id, bet_amount, bet_rate, current_hole_id, game_master_id) 
+        values($1, $2, $3, $4, $5, $6) RETURNING *`,
+      [course_id, bet_type_id, bet_amount, bet_rate, firstHoleId, game_master_id]
     ).then((x) => x.rows[0]);
 
     const gamePlayers = await Promise.all([game_master_id, ...players].map((player) =>

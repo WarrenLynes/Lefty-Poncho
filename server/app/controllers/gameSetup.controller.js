@@ -3,10 +3,10 @@ import {getAllCourses} from "./courses.controller";
 import {getAllBetTypes} from "./betTypes.controller";
 
 
-export default function getGameOptions() {
+export default function getGameOptions(userId) {
   return Promise.all([
     getAllCourses(),
-    getAvailablePlayers(),
+    getAvailablePlayers(userId),
     getAllBetTypes()
   ]).then((result) => ({
     courses: result[0],

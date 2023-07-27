@@ -1,52 +1,52 @@
-name, num_holes
-"west woods",18
-"Arrowhead Golf Club",18
-"Broadmoor Golf Club",54
-"Cherry Hills Country Club",18
-"The Ridge at Castle Pines North",18
-"Keystone Ranch Golf Course",18
-"Red Sky Golf Club",36
-"Telluride Golf Club",18
-"Raven Golf Club at Three Peaks",18
-"The Broadlands Golf Course",18
-"Murphy Creek Golf Course",18
-"Fossil Trace Golf Club",18
-"The Golf Club at Bear Dance",18
-"The Inverness Golf Club",18
-"Haymaker Golf Course",18
-"Lakota Canyon Ranch & Golf Club",18
-"The Club at Ravenna",18
-"Riverdale Golf Courses",36
-"Black Bear Golf Club",18
-"Eagle Ranch Golf Club",18
-"Aspen Golf Club",18
-"The Country Club at Castle Pines",18
-"Rollingstone Ranch Golf Club",18
-"Omni Interlocken Golf Club",27
-"The Golf Club at Bear Dance",18
-"Mariana Butte Golf Course",18
-"Todd Creek Golf Club",18
-"Pole Creek Golf Club",27
-"Lake Valley Golf Club",18
-"The Club at Pradera",18
-"Golf Granby Ranch",18
-"Saddle Rock Golf Course",18
-"Valley Country Club",18
-"Ironbridge Golf Club",18
-"Ute Creek Golf Course",18
-"Murphy Creek Golf Course",18
-"The Bridges Golf & Country Club",18
-"Harmony Golf Club",18
-"Eisenhower Golf Club",36
-"Boulder Country Club",27
-"Glenmoor Country Club",18
-"Highland Meadows Golf Course",18
-"Green Valley Ranch Golf Club",18
-"Haystack Mountain Golf Course",18
-"Antler Creek Golf Course",18
-"Lone Tree Golf Club",18
-"Saddleback Golf Club",18
-"Grand Elk Golf Club",18
-"The Golf Club at Fox Acres",18
-"Cattails Golf Club",18
-"Pelican Lakes Golf Club",18
+name, num_holes, img_url
+"west woods",18,"https://images.unsplash.com/photo-1593282153762-a41e3cceb06c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxfHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Arrowhead Golf Club",18,"https://images.unsplash.com/photo-1500932334442-8761ee4810a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyfHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Broadmoor Golf Club",54,"https://images.unsplash.com/photo-1535131749006-b7f58c99034b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwzfHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Cherry Hills Country Club",18,"https://images.unsplash.com/photo-1592919505780-303950717480?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw0fHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"The Ridge at Castle Pines North",18,"https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1fHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Keystone Ranch Golf Course",18,"https://images.unsplash.com/photo-1597369237991-5c95d1b6e0c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2fHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Red Sky Golf Club",36,"https://images.unsplash.com/photo-1593111774642-a746f5006b7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw3fHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Telluride Golf Club",18,"https://images.unsplash.com/photo-1584837140804-599306fb37f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw4fHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"Raven Golf Club at Three Peaks",18,"https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw5fHxnb2xmfGVufDB8fHx8MTY5MDQ0MzcwNHww&ixlib=rb-4.0.3&q=80&w=200"
+"The Broadlands Golf Course",18,"https://images.unsplash.com/photo-1611374243147-44a702c2d44c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxMHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Murphy Creek Golf Course",18,"https://images.unsplash.com/photo-1591491719565-9cae8fd89f8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxMXx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Fossil Trace Golf Club",18,"https://images.unsplash.com/photo-1632946269126-0f8edbe8b068?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxMnx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Golf Club at Bear Dance",18,"https://images.unsplash.com/photo-1538423070486-9292881ea10a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxM3x8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Inverness Golf Club",18,"https://images.unsplash.com/photo-1538648759472-7251f7cb2c2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxNHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Haymaker Golf Course",18,"https://images.unsplash.com/photo-1443706340763-4b60757a36ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxNXx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Lakota Canyon Ranch & Golf Club",18,"https://images.unsplash.com/flagged/photo-1576448438685-9f5e5b283d4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxNnx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Club at Ravenna",18,"https://images.unsplash.com/photo-1568229654980-91010242b5e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxN3x8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Riverdale Golf Courses",36,"https://images.unsplash.com/photo-1532508583690-538a1436f423?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxOHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Black Bear Golf Club",18,"https://images.unsplash.com/photo-1604702686571-f03d002a7c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwxOXx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Eagle Ranch Golf Club",18,"https://images.unsplash.com/photo-1535132011086-b8818f016104?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyMHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Aspen Golf Club",18,"https://images.unsplash.com/photo-1605144884374-ecbb643615f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyMXx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Country Club at Castle Pines",18,"https://images.unsplash.com/photo-1629673120178-53a664eec9e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyMnx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Rollingstone Ranch Golf Club",18,"https://images.unsplash.com/photo-1592937238247-cd0090e02f65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyM3x8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Omni Interlocken Golf Club",27,"https://images.unsplash.com/photo-1632244112951-95b29c92eee1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyNHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Golf Club at Bear Dance",18,"https://images.unsplash.com/photo-1576220258822-153014832245?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyNXx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Mariana Butte Golf Course",18,"https://images.unsplash.com/photo-1597369150710-64d6e1b61ad1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyNnx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Todd Creek Golf Club",18,"https://images.unsplash.com/photo-1597369199842-f08ca157e015?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyN3x8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Pole Creek Golf Club",27,"https://images.unsplash.com/photo-1591491698714-9631092f6c4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyOHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Lake Valley Golf Club",18,"https://images.unsplash.com/photo-1518288768521-88bdd4f43646?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwyOXx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Club at Pradera",18,"https://images.unsplash.com/photo-1595789927828-b56b8a608bc0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHwzMHx8Z29sZnxlbnwwfHx8fDE2OTA0NDM3MDR8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Golf Granby Ranch",18,"https://images.unsplash.com/photo-1627307887011-8a5029b6adcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1MXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Saddle Rock Golf Course",18,"https://images.unsplash.com/photo-1544914379-806667cd9489?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1Mnx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Valley Country Club",18,"https://images.unsplash.com/photo-1560674498-ec05053cbf14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1M3x8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Ironbridge Golf Club",18,"https://images.unsplash.com/photo-1576555928619-03d62a29e4a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1NHx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Ute Creek Golf Course",18,"https://images.unsplash.com/photo-1595827432953-7161e19e303e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1NXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Murphy Creek Golf Course",18,"https://images.unsplash.com/photo-1627310706118-b23fe91e3661?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1Nnx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Bridges Golf & Country Club",18,"https://images.unsplash.com/photo-1627308162175-04da997d5e47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1N3x8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Harmony Golf Club",18,"https://images.unsplash.com/photo-1633597468433-fdb200b73f62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1OHx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Eisenhower Golf Club",36,"https://images.unsplash.com/photo-1562204320-31975a5e09ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw1OXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Boulder Country Club",27,"https://images.unsplash.com/photo-1605813451457-a4bed7fc6479?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2MHx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Glenmoor Country Club",18,"https://images.unsplash.com/photo-1606208979423-55c6df2b8db2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2MXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Highland Meadows Golf Course",18,"https://images.unsplash.com/photo-1591491653056-4313c0e2f379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2Mnx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Green Valley Ranch Golf Club",18,"https://images.unsplash.com/photo-1561251224-e393160cd769?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2M3x8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Haystack Mountain Golf Course",18,"https://images.unsplash.com/photo-1621005570352-6418df03796b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2NHx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Antler Creek Golf Course",18,"https://images.unsplash.com/photo-1627955433445-d233480dd65d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2NXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Lone Tree Golf Club",18,"https://images.unsplash.com/photo-1597865992644-549ae818bd01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2Nnx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Saddleback Golf Club",18,"https://images.unsplash.com/photo-1514480573427-1f96cbed6a27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2N3x8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Grand Elk Golf Club",18,"https://images.unsplash.com/photo-1433800881591-a31e7bff3f22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2OHx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"The Golf Club at Fox Acres",18,"https://images.unsplash.com/photo-1561439852-69c28a8ae64c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw2OXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Cattails Golf Club",18,"https://images.unsplash.com/photo-1569615336419-2c33ad07f057?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw3MHx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"
+"Pelican Lakes Golf Club",18,"https://images.unsplash.com/photo-1564424276928-e92dcd4309d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODA3MTN8MHwxfHNlYXJjaHw3MXx8Z29sZnxlbnwwfHx8fDE2OTA0NDQwOTB8MA&ixlib=rb-4.0.3&q=80&w=200"

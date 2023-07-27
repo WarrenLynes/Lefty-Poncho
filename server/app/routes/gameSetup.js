@@ -8,7 +8,7 @@ export default function gameSetupRoutes() {
 
   router.get('/game-options', async (req, res, next) => {
     try {
-      const options = await getGameOptions();
+      const options = await getGameOptions(req.user.id);
       res.send(options);
     } catch(err) {
       next(err);
@@ -17,7 +17,9 @@ export default function gameSetupRoutes() {
 
   router.get('/available-players', async (req, res, next) => {
     try {
-      const players = await getAvailablePlayers();
+      console.log('req.user', req.user);
+      const userId = req.user.id;
+      const players = await getAvailablePlayers(userId);
       res.send(players);
     } catch(err) {
       next(err);

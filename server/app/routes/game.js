@@ -1,15 +1,25 @@
 import Router from 'express-promise-router';
-import {createGame, setTeams, submitScores} from "../controllers/game.controller";
+import {createGame, getActiveGame, setTeams, submitScores} from "../controllers/game.controller";
 
 export default function gameRoutes() {
   const router = new Router();
 
   router.post('/games', async (req, res, next) => {
     try {
-      const result = await createGame(req.body);
+      const result = await createGame(req.user, req.body);
       res.send(result);
     } catch(err) {
       next(err);
+    }
+  });
+
+  router.get('/games/active', async (req,res, next) => {
+    try {
+      const {id} = req.user;
+      const game = await getActiveGame(id);
+      res.send(game);
+    } catch(err) {
+      res.sendStatus(500);
     }
   });
 

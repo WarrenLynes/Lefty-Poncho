@@ -19,20 +19,25 @@ export const theme = extendTheme({
   },
   config: {
     useSystemColorMode: false,
-    initialColorMode: 'dark',
+    initialColorMode: 'light',
   },
 
   components: {
     Button: {
-      // Can simply pass default props to change default behaviour of components.
-      baseStyle: {
-        rounded: 'md',
-        _light: {  },
-        _dark: {backgroundColor: '#fff', color: 'blue.300' },
+      /*defaultProps: {
+        // colorScheme: 'blue',
+        backgroundColor: '#fff',
+        color: '#111',
+        borderColor: '#111111'
+      },*/
+      baseStyle: () => {
+        return {
+          rounded: 'md',
+          _light: { backgroundColor: '#fff', color: '#111111', borderColor: '#111111'  },
+          _dark: { backgroundColor: '#fff', color: 'blue.300' },
+        }
       },
-      defaultProps: {
-        colorScheme: 'blue',
-      },
+
     },
     Box: {
       baseStyle: (props) => {
@@ -53,7 +58,7 @@ export const theme = extendTheme({
     Input: {
       baseStyle: (props) => {
         return {
-          _light: { color: 'red.300' },
+          _light: { color: 'black' },
           _dark: { color: '#fff' },
         };
       }

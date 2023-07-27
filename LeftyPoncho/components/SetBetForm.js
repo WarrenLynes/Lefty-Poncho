@@ -1,50 +1,85 @@
-import {Pressable, Text, TextInput, View, StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 import {useState} from "react";
+import {Button, Center, FormControl, HStack, Icon, Input, Pressable, Stack, Text, View, VStack} from "native-base";
 
-export default function SetBetForm({submit}) {
-  const [amount, setAmount] = useState();
+export default function SetBetForm({onSubmit}) {
+  const [amount, setAmount] = useState('');
   const [type, setType] = useState()
 
-  function handleSubmit() {
-    submit({amount, type});
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log({amount, type});
+    onSubmit({amount, type});
   }
 
   return (
     <View style={styles.container}>
-      <Text>Bet Amount</Text>
-      <TextInput
-        style={styles.input}
-        value={amount}
-        placeholder="Bet Amount"
-        onChangeText={setAmount}
-      />
+      <FormControl mb="5" isRequired>
+        <Center>
+          <FormControl.Label>Bet Amount</FormControl.Label>
+          <Input
+            type='number'
+            w={{
+              base: "25%",
+              md: "25%"
+            }}
+            size="2xl"
+            InputLeftElement={
+              <Text ml="2" color="muted.400">$</Text>
+            }
+            value={amount}
+            placeholder="0"
+            onChangeText={setAmount}
+          />
+          <FormControl.HelperText>
+            Enter Bet Amount
+          </FormControl.HelperText>
+        </Center>
+      </FormControl>
 
-      <View style={styles.btnRow}>
-        <Pressable
-          style={styles.btn}
-          onPress={() => setType('stroke')}
+      <FormControl mb="5" isRequired>
+        <FormControl.Label>
+          Bet Type
+        </FormControl.Label>
+        <HStack
+          justifyContent="space-around"
         >
-          <Text style={styles.btnTxt}>Stroke</Text>
-        </Pressable>
+          <Button
+            w="50%"
+            flexGrow={1}
+            style={
+              type === 'per_stroke' && {
+                backgroundColor: '#055669'
+              }
+            }
+            onPress={() => setType('per_stroke')}
+          >
+            Per Stroke
+          </Button>
 
-        <Pressable
+          <Button
+            w="50%"
+            flexGrow={1}
+            style={
+              type === 'per_hole' && {
+                backgroundColor: '#055669'
+              }
+            }
+            onPress={() => setType('per_hole')}
+          >
+            Per Hole
+          </Button>
+        </HStack>
+      </FormControl>
+
+      <Center>
+        <Button
           style={styles.btn}
-          onPress={() => setType('hole')}
-        >
-          <Text style={styles.btnTxt}>Hole</Text>
-        </Pressable>
-      </View>
-
-
-      <Pressable
-        style={styles.btn}
-        onPress={handleSubmit}
-      >
-        <Text style={styles.btnTxt}>Next</Text>
-      </Pressable>
+          onPress={handleSubmit}
+        > Next </Button>
+      </Center>
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({

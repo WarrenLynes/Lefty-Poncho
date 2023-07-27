@@ -1,15 +1,17 @@
 import {Pressable, Text, View} from "react-native";
 import {useSelector} from "react-redux";
-import GameSetup from "../components/GameSetup";
+import GameSetup from "./GameSetup";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {NavigationContainer} from "@react-navigation/native";
+
+const GameStack = createNativeStackNavigator();
 
 export default function GameScreen() {
   const game = useSelector((state) => state.game);
 
-  return game && game.id ? (
-    <View w='100%' h="100%" bg="#111111">
+  return (
+    <View w='100%' h="100%">
       <Text>GAME</Text>
     </View>
-  ): (
-    <GameSetup />
-  );
+  )
 }
