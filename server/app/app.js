@@ -27,6 +27,13 @@ export default function APP() {
   app.use(authRoutes());
 
   // protected screens
+  app.get('/user', authenticate, (req, res) => {
+    if(!req.user) {
+      return res.sendStatus(401);
+    }
+    console.log(req.token);
+    return res.send({user: req.user, token: req.token});
+  });
   app.use(authenticate, gameRoutes());
   app.use(authenticate, gameSetupRoutes());
 

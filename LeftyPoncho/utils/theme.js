@@ -23,6 +23,11 @@ export const theme = extendTheme({
   },
 
   components: {
+    Text: {
+      defaultProps: {
+        fontSize: 'xl',
+      }
+    },
     Button: {
       /*defaultProps: {
         // colorScheme: 'blue',
@@ -30,6 +35,7 @@ export const theme = extendTheme({
         color: '#111',
         borderColor: '#111111'
       },*/
+
       baseStyle: () => {
         return {
           rounded: 'md',

@@ -10,6 +10,8 @@ import {Avatar, Button, Center, HStack, Input, Pressable, ScrollView, Text, View
 import Item from "../components/Item";
 import ReviewGameSetup from "../components/ReviewGameSetup";
 import axios from "axios";
+import {createGame} from "../utils/api";
+import {handleFetchActiveGame, handleNewGame} from "../state/Game/actions";
 
 export default function GameSetupScreen({navigation}) {
   const dispatch = useDispatch();
@@ -25,36 +27,20 @@ export default function GameSetupScreen({navigation}) {
   });
 
   function submit() {
-/*
-{
-    "course_id": 1,
-    "bet_type_id": 1,
-    "bet_amount": 10,
-    "game_master_id": 2,
-    "players": [3,4,5]
-}
-*/
     setLoading(true);
-    axios({
-      url: 'http://localhost:3333/games',
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      data:{
-        course_id: course,
-        bet_type_id: 1,
-        bet_amount: bet.amount,
-        bet_rate: bet.type,
-        players
-      }
-    }).then((result) => {
-      console.log(result);
-      setLoading(false);
+    const gameInfo = {
+      course_id: course,
+      bet_type_id: 1,
+      bet_amount: bet.amount,
+      bet_rate: bet.type,
+      players
+    };
+
+    dispatch(handleNewGame(gameInfo, () => {
+      dispatch(handleFetchActiveGame());
       navigation.navigate('Game');
-    }).catch(err => {
-      console.error(err);
-    })
+    }));
+
   }
 
   function handleStep0(courseId) {
@@ -208,9 +194,6 @@ function Select({handleNext, titleKey, items, selected, onSelect, ...options}) {
     </SafeAreaView>
   )
 }
-
-
-
 
 
 const styles = StyleSheet.create({

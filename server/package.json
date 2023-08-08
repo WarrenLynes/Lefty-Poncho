@@ -18,6 +18,10 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ],
+    "sourceMaps": "inline",
+    "plugins": [
+      "source-map-support"
     ]
   },
   "scripts": {
@@ -35,6 +39,7 @@
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "axios": "^1.4.0",
+    "babel-plugin-source-map-support": "^2.2.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -54,6 +59,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.1",
+    "source-map-support": "^0.5.21",
     "uuid": "^9.0.0"
   },
   "author": "",

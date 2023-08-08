@@ -11,6 +11,7 @@
   "dependencies": {
     "--legacy-peer-deps": "^0.0.1-security.6",
     "@expo/webpack-config": "^18.1.2",
+    "@react-native-async-storage/async-storage": "^1.19.1",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "axios": "^1.4.0",

@@ -1,12 +1,14 @@
 import {StyleSheet} from "react-native";
 import {primaryTextColor} from "../utils/styles";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {handleSignIn, handleUserAuthenticated} from "../state/auth/actions";
 import {useDispatch} from "react-redux";
 import {signIn} from "../utils/api";
 import {Button, Center, FormControl, Input, Stack, View} from "native-base";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({navigator}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('warrenlynes@gmail.com');
   const [password, setPassword] = useState('123456789');
@@ -15,6 +17,28 @@ export default function LoginScreen({navigation}) {
   function handleSubmit() {
     dispatch(handleSignIn(email, password));
   }
+
+  /*useEffect(() => {
+    AsyncStorage.getItem('AUTH')
+      .then((value) => {
+        if (value !== null) {
+          const data = JSON.parse(value);
+          axios({
+            url: 'http://localhost:3333/user',
+            method: 'GET',
+            headers: {
+              Authorization: 'Bearer ' + data.token
+            }
+          }).then(({data}) => {
+            console.log(data);
+            dispatch(handleUserAuthenticated(data));
+            navigator.navigate('Game');
+          }).catch((err) => {
+            console.log(err);
+          })
+        }
+      });
+  }, [])*/
 
   return (
     <Center

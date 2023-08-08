@@ -1,4 +1,5 @@
 import {query} from "../db";
+import {rows} from "pg/lib/defaults";
 
 function parseData(options) {
   const wheres = Object.keys(options).map((x) => x + ' = ?');
@@ -14,26 +15,189 @@ function parseOptionsArray(column, options) {
 
 export async function checkForOpenGames(users) {
   let string = users.map((x, i) => `user_id=$${i + 1}`);
-  const openGames = await query(
-    `SELECT COUNT(id) FROM game_player WHERE ${string.join(' OR ')}`,
-    users
-  ).then((x) => x.rows[0]);
+  const openGames = await getActiveGame(users)
 
-  if(openGames.count > 0)
-    throw new Error('open game');
+  if(openGames.length > 0) {
+    await Promise.all(
+      openGames.map((g) =>
+        query(
+          `DELETE FROM game WHERE id=$1`,
+          [g.id]
+        )
+      )
+    )
+  }
 }
 
-export async function getActiveGame(userId) {
-  return await query(
+export async function getGame(gameId, user) {
+  console.log(gameId);
+  const game = await query(
+    `SELECT 
+      g.id AS game_id,
+      g.course_id,
+      g.bet_amount,
+      g.bet_rate,
+      g.current_hole_id,
+      g.bet_type_id,
+      g.status,
+      g.game_master_id,
+      c.name AS course_name,
+      c.num_holes AS course_num_holes,
+      bt.name AS bet_type_name,
+      bt.rules AS bet_type_rules,
+      h.hole_num AS current_hole_num,
+      h.par AS current_hole_par,
+      h.distance AS current_hole_distance,
+      gm.username AS game_master_username,
+      gm.first_name AS game_master_first_name,
+      gm.last_name AS game_master_last_name,
+      gp.id AS game_player_id,
+      gp.user_id AS player_id,
+      u.username AS player_username,
+      u.first_name AS player_first_name,
+      u.last_name AS player_last_name,
+      gp.balance AS player_balance
+    FROM game g
+    JOIN course c 
+        ON g.course_id = c.id
+    JOIN bet_type bt 
+        ON g.bet_type_id = bt.id
+    JOIN hole h 
+        ON g.current_hole_id = h.id
+    JOIN "user" gm 
+        ON g.game_master_id = gm.id
+    JOIN game_player gp 
+        ON g.id = gp.game_id
+    JOIN "user" u 
+        ON gp.user_id = u.id
+    WHERE g.id = $1 
+        AND gp.user_id = $2;`,
+    [gameId, user.id]
+  ).then(({rows}) => rows[0]);
+
+  const players = await getGamePlayers(game.game_id);
+  const teams = await query(
+    `SELECT * FROM team WHERE game_id=$1`,
+    [game.game_id]
+  ).then(({rows}) => rows);
+
+  const _teams = {
+    'left': null,
+    'right': null
+  };
+
+  teams.forEach((team) => {
+    _teams[team.team] = {
+      ...team,
+      players: players.filter((x) =>
+        x.player_id === team.user_1_id
+        || x.player_id === team.user_2_id
+      )
+    }
+  });
+
+  return {...game, players, teams: _teams};
+}
+
+export async function getActiveGameInfo(user) {
+  const game = await query(
+    `SELECT 
+      g.id AS game_id,
+      g.course_id,
+      g.bet_amount,
+      g.bet_rate,
+      g.current_hole_id,
+      g.bet_type_id,
+      g.status,
+      g.game_master_id,
+      c.name AS course_name,
+      c.num_holes AS course_num_holes,
+      bt.name AS bet_type_name,
+      bt.rules AS bet_type_rules,
+      h.hole_num AS current_hole_num,
+      h.par AS current_hole_par,
+      h.distance AS current_hole_distance,
+      gm.username AS game_master_username,
+      gm.first_name AS game_master_first_name,
+      gm.last_name AS game_master_last_name,
+      gp.id AS game_player_id,
+      gp.user_id AS player_id,
+      u.username AS player_username,
+      u.first_name AS player_first_name,
+      u.last_name AS player_last_name,
+      gp.balance AS player_balance
+    FROM game g
+    JOIN course c 
+        ON g.course_id = c.id
+    JOIN bet_type bt 
+        ON g.bet_type_id = bt.id
+    JOIN hole h 
+        ON g.current_hole_id = h.id
+    JOIN "user" gm 
+        ON g.game_master_id = gm.id
+    JOIN game_player gp 
+        ON g.id = gp.game_id
+    JOIN "user" u 
+        ON gp.user_id = u.id
+    WHERE g.status = 'inprogress' 
+        AND gp.user_id = $1;`,
+    [user.id]
+  ).then(({rows}) => rows[0]);
+  const players = await getGamePlayers(game.game_id);
+  const teams = await query(
+    `SELECT * FROM team WHERE game_id=$1`,
+    [game.game_id]
+  ).then(({rows}) => rows);
+
+  const _teams = {
+    'left': null,
+    'right': null
+  };
+
+  teams.forEach((team) => {
+    _teams[team.team] = {
+      ...team,
+      players: players.filter((x) =>
+        x.player_id === team.user_1_id
+        || x.player_id === team.user_2_id
+      )
+    }
+  });
+
+  return {...game, players, teams: _teams};
+}
+
+export async function getActiveGame(users) {
+  let string = users.map((x, i) => `u.id=${x}`);
+  return query(
     `SELECT DISTINCT g.id, g.course_id, g.bet_type_id, g.bet_amount, g.bet_rate, g.current_hole_id, g.status, g.game_master_id
       FROM game g
       JOIN game_player gp ON g.id = gp.game_id
       JOIN "user" u ON gp.user_id = u.id
-      WHERE u.id = $1
-      AND g.status = 'inprogress'`,
-    [userId]
+      WHERE ${string.join(' OR ')} 
+      AND g.status = 'inprogress'`
   ).then((result) => result.rows);
+}
 
+export async function getGamePlayers(gameId) {
+  return query(
+    `SELECT 
+      gp.id AS game_player_id,
+      gp.user_id AS player_id,
+      u.username AS player_username,
+      u.first_name AS player_first_name,
+      u.last_name AS player_last_name,
+      gp.balance AS player_balance
+    FROM 
+        game g
+    JOIN 
+        game_player gp ON g.id = gp.game_id
+    JOIN 
+        "user" u ON gp.user_id = u.id
+    WHERE 
+        g.id = $1;`,
+    [gameId]
+  ).then(({rows}) => rows)
 }
 
 async function getTeams(game_id, hole_id, selectString) {
@@ -99,6 +263,17 @@ export async function createGame(user, gameInfo) {
       ).then((x) => x.rows[0])
     ));
 
+    const gameTeams = await Promise.all([
+      query(
+        `INSERT INTO team(team, game_id, user_1_id, user_2_id) VALUES($1,$2,$3,$4)`,
+        ['left', newGame.id, gamePlayers[0].user_id, gamePlayers[1].user_id]
+      ),
+      query(
+        `INSERT INTO team(team, game_id, user_1_id, user_2_id) VALUES($1,$2,$3,$4)`,
+        ['right', newGame.id, gamePlayers[2].user_id, gamePlayers[3].user_id]
+      )
+    ]);
+
     return {firstHoleId, newGame, gamePlayers};
 
   } catch(err) {
@@ -134,15 +309,14 @@ export async function getHoleById(hole_id, selectColumns) {
   ).then((x) => x.rows[0]);
 }
 
-export function submitScore(game_id, hole_id, user_id, score) {
-  return query(
+export async function submitScore(game_id, hole_id, user_id, score) {
+  return await query(
     `INSERT INTO 
         score(game_id, hole_id, user_id, score) 
         VALUES($1, $2, $3, $4) RETURNING id, user_id, score`,
     [game_id, hole_id, user_id, score]
   ).then((x) => x.rows[0]);
 }
-
 
 function calculateWinner(teams, scores, par) {
   let teamScores = teams.map((x, i) => {
@@ -199,7 +373,73 @@ function calculateWinner(teams, scores, par) {
 }
 
 
-export async function submitScores(game_id, hole_id, scores) {
+export async function submitScores(game_id, payload) {
+  const {teams, course, hole} = payload;
+  function getScore(players) {
+    return Number(players.sort((a,b) => a - b).join(''));
+  }
+
+  try{
+    const leftScore = getScore([teams.left.player_1, teams.left.player_1]);
+    console.log(leftScore);
+
+    const leftTeam = await query(
+      `UPDATE team SET score=score + $1 WHERE id = $2 RETURNING *`,
+      [(teams.left.player_1 + teams.left.player_2), teams.left.id]
+    ).then(({rows}) => rows[0])
+    const rightTeam = await query(
+      `UPDATE team SET score=score + $1 WHERE id = $2 RETURNING *`,
+      [(teams.right.player_1 + teams.right.player_2), teams.right.id]
+    ).then(({rows}) => rows[0])
+
+    if(hole.num < course.num_holes) {
+      const nextHole = await query(
+        `SELECT id FROM hole WHERE hole_num = $1 AND course_id =$2`,
+        [hole.num + 1,  course.id]
+      ).then(({rows}) => rows[0]);
+      await query(
+        `UPDATE game SET current_hole_id = $1 WHERE id = $2`,
+        [nextHole.id, game_id]
+      )
+    } else {
+      await query(
+        `UPDATE game SET status= 'complete' WHERE id = $1`,
+        [game_id]
+      );
+
+      let winner;
+      console.log(leftTeam, rightTeam);
+      if(leftTeam.score > rightTeam.score) {
+        winner = rightTeam;
+      } else if (leftTeam.score < rightTeam.score) {
+        winner = leftTeam;
+      } else {
+        winner = 'draw';
+      }
+
+      await query(
+        `UPDATE team SET victory = $1, draw=$2 WHERE id = $3 RETURNING *`,
+        [
+          winner.id === leftTeam.id,
+          winner === 'draw',
+          leftTeam.id
+        ]
+      ).then((x) => x.rows)
+
+      await query(
+        `UPDATE team SET victory = $1, draw=$2 WHERE id = $3 RETURNING *`,
+        [
+          winner.id === rightTeam.id,
+          winner === 'draw',
+          rightTeam.id
+        ]
+      ).then((x) => x.rows)
+    }
+
+  } catch(err) {
+    console.error(err);
+  }
+  /*
   await query(
     `SELECT id FROM score WHERE game_id=$1 AND hole_id=$2`,
     [game_id, hole_id]
@@ -208,7 +448,22 @@ export async function submitScores(game_id, hole_id, scores) {
       throw new Error('scores already inputed for this hole');
   });
 
-  try {
+  try{
+    await query(
+      `UPDATE team SET score=$1 WHERE id = $2`,
+      [teams.left.score, teams.left.id]
+    );
+    await query(
+      `UPDATE team SET score=$1 WHERE id = $2`,
+      [teams.right.score, teams.right.id]
+    );
+  } catch(err) {
+    console.error(err);
+  }
+  */
+
+
+  /*try {
     const hole = await getHoleById(hole_id, 'par');
     const teams = await getTeams(game_id, hole_id, 'id, team, user_1_id, user_2_id');
 
@@ -232,11 +487,11 @@ export async function submitScores(game_id, hole_id, scores) {
       ).then((x) => x.rows)
     )).then((x) => {
 
-      /*TODO UPDATE GAME HOLE */
+      /!*TODO UPDATE GAME HOLE *!/
       console.log(x);
     })
 
   } catch(err) {
     throw new Error(err);
-  }
+  }*/
 }

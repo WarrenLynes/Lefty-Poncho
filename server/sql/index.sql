@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS team CASCADE;
 DROP TABLE IF EXISTS score CASCADE;
 
 DROP TYPE IF EXISTS game_status;
+DROP TYPE IF EXISTS bet_rate;
 DROP TYPE IF EXISTS team_name;
 
 CREATE TABLE "user" (
@@ -101,10 +102,12 @@ CREATE TABLE game_player (
     balance INT NOT NULL DEFAULT(0), -- update to type currency
     CONSTRAINT fk_game_id
         FOREIGN KEY(game_id)
-        REFERENCES game(id),
+        REFERENCES game(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_player_user_id
         FOREIGN KEY(user_id)
         REFERENCES "user"(id)
+        ON DELETE CASCADE
 );
 
 
@@ -113,18 +116,19 @@ CREATE TABLE team (
     id SERIAL PRIMARY KEY,
     team team_name NOT NULL,
     game_id INT NOT NULL,
-    hole_id INT NOT NULL,
+--    hole_id INT NOT NULL,
     user_1_id INT NOT NULL,
     user_2_id INT NOT NULL,
-    score INT,
+    score INT DEFAULT(0),
     victory BOOLEAN,
     draw BOOLEAN,
     CONSTRAINT fk_team_game_id
         FOREIGN KEY(game_id)
-        REFERENCES game(id),
-    CONSTRAINT fk_team_hole_id
-        FOREIGN KEY(hole_id)
-        REFERENCES hole(id),
+        REFERENCES game(id)
+        ON DELETE CASCADE,
+--    CONSTRAINT fk_team_hole_id
+--        FOREIGN KEY(hole_id)
+--        REFERENCES hole(id),
     CONSTRAINT fk_team_user_1_id
         FOREIGN KEY(user_1_id)
         REFERENCES "user"(id),

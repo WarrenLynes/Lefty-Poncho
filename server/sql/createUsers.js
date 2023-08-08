@@ -44,12 +44,13 @@ const users = [
 Promise.all(
   users.map(async ({email, password, username, first_name, last_name, img_url}) => {
     const hash = await bcrypt.hash(password, 10);
-    return query(
+    return [email, hash, username, first_name, last_name, img_url];
+    /*return query(
       `INSERT INTO 
         "user"(email, password, username, first_name, last_name, img_url) 
         VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
       [email, hash, username, first_name, last_name, img_url]
-    ).then((x) => x.rows);
+    ).then((x) => x.rows);*/
   })
 ).then((result) => {
   console.log(result)

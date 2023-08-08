@@ -1,4 +1,5 @@
 import {signIn} from "../../utils/api";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export const handleUserAuthenticated = ({user, token}) => ({
@@ -6,9 +7,10 @@ export const handleUserAuthenticated = ({user, token}) => ({
   payload: {user, token}
 });
 
-export const handleSignIn = (email, password) => (dispatch) => {
+export const handleSignIn = (email, password) => async (dispatch) => {
   signIn(email, password)
-    .then(({data}) => {
+    .then(async ({data}) => {
+      await AsyncStorage.setItem('AUTH', JSON.stringify(data))
       dispatch(handleUserAuthenticated(data));
     })
 }

@@ -9,6 +9,9 @@ import LoginScreen from "./screens/Login";
 import GameScreen from "./screens/Game";
 import {theme} from "./utils/theme";
 import GameSetupScreen from "./screens/GameSetup";
+import {useEffect} from "react";
+import axios from "axios";
+import GameReviewScreen from "./screens/GameReview";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +29,8 @@ function App() {
     colorMode,
     toggleColorMode
   } = useColorMode();
+
+  console.log(auth);
   return (
     <NativeBaseProvider theme={theme}>
       <NavigationContainer>
@@ -33,11 +38,9 @@ function App() {
           initialRouteName={'Game-Setup'}
           screenOptions={{
             headerStyle: {
-              // backgroundColor: '#111111',
               borderBottomColor: '#0cb7f0'
             },
             headerTitleStyle: {
-              // color: '#0cb7f0',
               color: '#111111'
             },
           }}
@@ -56,13 +59,21 @@ function App() {
                     component={GameScreen}
                     options={{title: 'Game'}}
                   />
+
+                  <Stack.Screen
+                    name="Game-Review"
+                    component={GameReviewScreen}
+                    options={{title: 'Game Review'}}
+                  />
                 </>
               ) : (
-                <Stack.Screen
-                  name="SignIn"
-                  component={LoginScreen}
-                  options={{title: 'Login'}}
-                />
+                <>
+                  <Stack.Screen
+                    name="SignIn"
+                    component={LoginScreen}
+                    options={{title: 'Login'}}
+                  />
+                </>
               )
           }
         </Stack.Navigator>
